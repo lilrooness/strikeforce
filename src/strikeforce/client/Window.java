@@ -17,13 +17,19 @@ public class Window extends JFrame {
 	 * @param height
 	 * @throws HeadlessException
 	 */
-	public Window(int width, int height) throws HeadlessException {
+	public Window(int width, int height, Game game) throws HeadlessException {
 		super();
 		this.width = width;
 		this.height = height;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(new Dimension(width, height));
+
+    this.add(new Canvas(width, height, game));
 		setVisible(true);
 	}
+
+  public static void main(String[] args) {
+    new Window(640, 480, new Game());
+  }
 }

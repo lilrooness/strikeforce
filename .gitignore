@@ -2,3 +2,7 @@
 .settings
 .project
 bin
+
+.idea/
+out/
+strikeforce.iml

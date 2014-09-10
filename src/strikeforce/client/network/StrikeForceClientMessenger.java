@@ -7,7 +7,8 @@ import java.net.InetAddress;
 import java.nio.ByteBuffer;
 
 import strikeforce.observer.Observer;
-import strikeforce.observer.SubjectEvent;
+import strikeforce.observer.events.PlayerMovedEvent;
+import strikeforce.observer.events.SubjectEvent;
 import strikeforce.server.PacketType;
 
 public class StrikeForceClientMessenger implements Observer {
@@ -33,6 +34,10 @@ public class StrikeForceClientMessenger implements Observer {
 		byte[] buffer = ByteBuffer.allocate(4).putInt(PacketType.CONNECTION).array();
 		socket.send(new DatagramPacket(buffer, buffer.length, host, hostPort));
 	}
+
+  public void sendPlayerUpdate(PlayerMovedEvent event) {
+
+  }
 	
 	/**
 	 * @return the host
