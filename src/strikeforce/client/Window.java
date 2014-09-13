@@ -10,7 +10,9 @@ public class Window extends JFrame {
 	private int width;
 	private int height;
 	
+	private Canvas canvas;
 	
+	private ClientGame clientGame;
 	
 	/**
 	 * @param width
@@ -21,9 +23,18 @@ public class Window extends JFrame {
 		super();
 		this.width = width;
 		this.height = height;
+		clientGame = new ClientGame();
+		canvas = new Canvas(width, height, clientGame);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(new Dimension(width, height));
+		
+		add(canvas);
+		
 		setVisible(true);
+	}
+	
+	public static void main(String[] args) {
+		new Window(640, 480);
 	}
 }

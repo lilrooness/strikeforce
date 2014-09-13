@@ -6,7 +6,9 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.nio.ByteBuffer;
 
+import strikeforce.entity.Player;
 import strikeforce.observer.Observer;
+import strikeforce.observer.PlayerEffectedEvent;
 import strikeforce.observer.SubjectEvent;
 import strikeforce.server.PacketType;
 
@@ -34,6 +36,33 @@ public class StrikeForceClientMessenger implements Observer {
 		socket.send(new DatagramPacket(buffer, buffer.length, host, hostPort));
 	}
 	
+	public void sendPlayerUpdate(Player player) throws IOException {
+		DatagramSocket socket = new DatagramSocket(clientPort);
+		byte[] buffer = ByteBuffer.allocate(4)
+				.putInt(PacketType.UPDATE)
+				.putFloat(player.getxVel())
+				.putFloat(player.getyVel())
+				.putInt(player.getId()).array();
+		
+		socket.send(new DatagramPacket(buffer, buffer.length, host, hostPort));
+	}
+	
+	@Override
+	public void notifyEvent(SubjectEvent event) {
+		switch(event.getType()) {
+		case PLAYER_UPDATE: {
+			PlayerEffectedEvent effectEvent = (PlayerEffectedEvent) event;
+			try {
+				sendPlayerUpdate((Player)effectEvent.getPlayer());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		}
+		}
+	}
+	
 	/**
 	 * @return the host
 	 */
@@ -45,11 +74,6 @@ public class StrikeForceClientMessenger implements Observer {
 	 */
 	public void setHost(InetAddress host) {
 		this.host = host;
-	}
-	
-	@Override
-	public void notifyEvent(SubjectEvent event) {
-		
 	}
 
 	/**
