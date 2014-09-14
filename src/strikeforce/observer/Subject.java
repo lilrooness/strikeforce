@@ -6,6 +6,10 @@ public class Subject {
 	
 	private ArrayList<Observer> observers;
 	
+	public Subject() {
+		observers = new ArrayList<Observer>();
+	}
+	
 	public void notifyObservers(SubjectEvent event) {
 		for(Observer observer : observers) {
 			observer.notifyEvent(event);

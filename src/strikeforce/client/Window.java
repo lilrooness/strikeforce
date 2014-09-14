@@ -11,7 +11,6 @@ public class Window extends JFrame {
 	private int height;
 	
 	
-	
 	/**
 	 * @param width
 	 * @param height
@@ -24,6 +23,12 @@ public class Window extends JFrame {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(new Dimension(width, height));
+
+		this.add(new Canvas(width, height, new Game()));
 		setVisible(true);
+	}
+	
+	public static void main(String[] args) {
+		new Window(640, 480);
 	}
 }
