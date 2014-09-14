@@ -5,8 +5,6 @@ import java.awt.HeadlessException;
 
 import javax.swing.JFrame;
 
-import strikeforce.Game;
-
 public class Window extends JFrame {
 
 	private int width;
@@ -21,7 +19,7 @@ public class Window extends JFrame {
 	 * @param height
 	 * @throws HeadlessException
 	 */
-	public Window(int width, int height, Game game) throws HeadlessException {
+	public Window(int width, int height) throws HeadlessException {
 		super();
 		this.width = width;
 		this.height = height;
@@ -37,7 +35,6 @@ public class Window extends JFrame {
 	}
 	
 	public static void main(String[] args) {
-		new Window(640, 480, new Game());
+		new Window(640, 480);
 	}
-
 }
