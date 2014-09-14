@@ -39,6 +39,9 @@ public class StrikeForceServerListener implements Runnable {
 				case PacketType.DISCONNECTION:
 					System.out.println(packetReceived.getAddress()+" is leaving");
 					break;
+				case PacketType.UPDATE: {
+					System.out.println(packetReceived.getAddress()+" just moved");
+				}
 				}
 			} catch (IOException e) {
 				e.printStackTrace();

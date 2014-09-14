@@ -22,5 +22,6 @@ public class MoveCommand implements Command {
 	@Override
 	public void execute() {
 		player.applyForce(xForce, yForce);
+		System.out.println("player has moved");
 	}
 }
