@@ -35,6 +35,10 @@ public class StrikeForceClientMessenger implements Observer {
 		byte[] buffer = ByteBuffer.allocate(4).putInt(PacketType.CONNECTION).array();
 		socket.send(new DatagramPacket(buffer, buffer.length, host, hostPort));
 	}
+
+//  public void sendPlayerUpdate(PlayerMovedEvent event) {
+//
+//  }
 	
 	public void sendPlayerUpdate(Player player) throws IOException {
 		DatagramSocket socket = new DatagramSocket(clientPort);
